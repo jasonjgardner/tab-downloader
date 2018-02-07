@@ -1,0 +1,173 @@
+///
+/// Tab Downloader
+/// File types and cards
+///
+
+/// File type card container <label>
+.filetype {
+	align-items: center;
+	display: flex;
+	flex-flow: column nowrap;
+	flex: 0 0 15%;
+	justify-content: center;
+	margin: baseline();
+
+	&__icon {
+		align-self: center;
+		margin-right: baseline(2);
+
+		circle {
+			fill: $md-grey-100;
+			transform-origin: 50%;
+			transition: transform duration() ease(out-quint), opacity duration(.5) ease(out-quad);
+			will-change: fill, transform, opacity;
+		}
+	}
+
+	&__label {
+		align-self: center;
+	}
+
+	.card {
+		@include ripple--clip($md-grey-300);
+		align-content: center;
+		box-sizing: content-box;
+		cursor: pointer;
+		display: inline-flex;
+		font-family: $font-family-title;
+		font-size: 1rem;
+		height: $size-filetype-card--max-height;
+		justify-content: flex-start;
+		max-width: baseline(22);
+		min-width: $size-filetype-card--min-width;
+		transition: backgrond-color duration() ease-out, box-shadow duration(1.25) ease(authentic), transform duration(1.333) ease(out-quad);
+		user-select: none;
+		width: calc(100% - #{ceil($padding-card * 2)});
+		will-change: background-color, box-shadow, transform;
+
+		&[aria-pressed='true'] {
+			&:hover,
+			&:focus 	{
+				@include shadow(8);
+				transform: $translate-filetype--checked--hover;
+			}
+
+			.icon {
+				color: $color-filetype--focus;
+			}
+		}
+	}
+
+	&:focus .card {
+		color: $color-filetype-outline;
+		outline: 2px solid $color-filetype-outline;
+		transform: $translate-filetype--focus;
+
+		&[aria-pressed='true'] {
+			background-color: $color-filetype--focus;
+			color: $md-white;
+			outline-color: $color-filetype-outline--inverse;
+		}
+	}
+}
+
+.select-filetypes {
+	box-sizing: border-box;
+	margin-bottom: baseline(3);
+	max-width: 100%;
+	flex-direction: column;
+
+	&__title {
+		font: 500 .8125rem/2 $font-family-title;
+		margin: -2em 0 0 baseline();
+	}
+
+	/// Label which precedes each file type group
+	&__header {
+		align-items: baseline;
+		display: flex;
+		justify-content: space-between;
+		min-height: baseline(3);
+		//padding-right: calc(#{($size-filetype-card--max * .5)} + #{ceil($size-filetype-header-icon * 1.25)}); // Align at edge of last card
+
+		.tooltip::after {
+			top: ($size-filetype-header-icon * .125);
+		}
+
+		/// Circular buttons with transparent backgrounds
+		.btn {
+			color: $md-dark-text-secondary;
+			overflow: visible;
+			transition: opacity duration(.5) ease-out;
+			will-change: opacity;
+
+			&::after {
+				display: none;
+			}
+
+			&[disabled] {
+				cursor: default;
+				opacity: 0;
+			}
+
+			.icon {
+				font-size: $size-filetype-header-icon;
+			}
+
+			circle {
+				opacity: 0;
+				transition: opacity duration(.666) ease-out;
+				will-change: opacity;
+			}
+
+			&:hover circle,
+			&:focus circle {
+				opacity: 1;
+			}
+		}
+	}
+
+	&__container {
+		display: flex;
+		flex-flow: row wrap;
+
+		&:first-child {
+			margin-top: baseline(-1);
+		}
+
+		@media screen and (max-width: map-get($breakpoints--min, tablet)) {
+			justify-content: center;
+		}
+	}
+
+	input,
+	.icon--swap {
+		@extend %hide;
+	}
+
+	input:checked + .card {
+		@include ripple--clip($md-white);
+		@include shadow(4);
+		background-color: $color-filetype--active;
+		color: $color-filetype-text--active;
+
+		.icon {
+			color: $color-filetype--active;
+
+			circle {
+				fill: $md-white;
+			}
+		}
+
+		&:hover .icon,
+		&:focus .icon {
+			background-color: rgba($color-filetype-text--active, 0);
+			color: $color-filetype-text--active;
+
+			circle {
+				opacity: 0;
+				transform: scale(0);
+			}
+		}
+	}
+}

@@ -1,0 +1,42 @@
+///
+/// Tab Downloader
+/// Page header
+///
+
+.header {
+	align-items: center;
+	display: flex;
+	margin-bottom: baseline(3);
+	margin-top: baseline(3);
+	opacity: .78;
+	transition: opacity duration() ease-out;
+	will-change: opacity;
+
+	&:hover,
+	&:focus {
+		opacity: 1;
+	}
+
+	&__logo {
+		height: baseline(4);
+		padding: 0 baseline(2.5);
+		width: baseline(4);
+
+		use {
+			fill: $color-header-title;
+		}
+	}
+
+	h1 {
+		color: $color-header-title;
+		cursor: default;
+		display: inline-block;
+		font-size: .9375rem;
+		font-weight: 600;
+		line-height: 1.25;
+		margin: 0;
+		text-transform: uppercase;
+		user-select: none;
+		vertical-align: middle;
+	}
+}

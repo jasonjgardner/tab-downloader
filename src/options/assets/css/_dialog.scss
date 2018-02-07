@@ -1,0 +1,167 @@
+///
+/// Tab Downloader
+/// Dialogs and Modals
+///
+
+/// Dialog / modal container
+.dialog {
+	visibility: hidden;
+	z-index: -1;
+
+	/// Overlay behind the open dialog
+	&__backdrop {
+		background-color: $color-dialog-overlay;
+		height: 100vh;
+		left: 0;
+		opacity: .3;
+		position: fixed;
+		top: 0;
+		transition: transform $duration-base ease(dialog);
+		width: 100vw;
+		will-change: transform;
+		z-index: -1;
+	}
+
+	/// The dialog box itself
+	&__window {
+		@include shadow(24);
+		background-color: $md-white;
+		border-radius: $border-radius--small;
+		display: inline-flex;
+		flex-direction: column;
+		left: 50%;
+		max-height: 80vh;
+		max-width: 90vw;
+		opacity: 0;
+		position: fixed;
+		top: 50%;
+		transform: translate(-50%, baseline(18)) scale(.8);
+		transition: opacity duration(.5) ease(dialog), transform duration(.5) ease(dialog);
+		will-change: opacity, transform;
+	}
+
+	/// Dialog title
+	&__header {
+		color: $color-dialog-header;
+		padding: baseline(3) baseline(3) 0;
+
+		+ &__body:last-child {
+			margin-top: (baseline(3) * -1);
+		}
+
+		h1,
+		h2,
+		h3 {
+			font: 600 1.25rem/2 $font-family-title;
+			letter-spacing: .02em;
+			margin: 0;
+		}
+	}
+
+	/// Dialog content
+	&__body {
+		color: $color-dialog-text;
+		font: normal 1rem/1.25 $font-family-body;
+		letter-spacing: .04em;
+		overflow: auto;
+		padding: 0 baseline(3) abs(baseline(3) - $padding-dialog-footer);
+
+		&:last-child {
+			padding-bottom: baseline(3);
+		}
+
+		h1 {
+			font-size: 1.5rem;
+			font-weight: 400;
+		}
+
+		h2 {
+			font-size: 1.125rem;
+		}
+
+		ul {
+			margin-top: 1rem;
+		}
+
+		a {
+			color: $color-dialog-link;
+			text-decoration: none;
+
+			&:focus,
+			&:hover {
+				color: $color-dialog-button;
+			}
+
+			&:visited {
+				color: darken($color-dialog-link, 10%);
+			}
+		}
+	}
+
+	/// Dialog footer container
+	&__footer {
+		display: flex;
+		justify-content: flex-end;
+		min-height: 1.825rem;
+		padding: $padding-dialog-footer;
+	}
+
+	/// Dialog footer buttons
+	&__btn {
+		@include ripple--clip($md-grey-500);
+		background-color: transparent;
+		box-shadow: none;
+		color: $color-dialog-button;
+		font-size: 1rem;
+		font-weight: 500;
+		line-height: 1;
+		min-width: baseline(9);
+		transition: background-color duration(.5) ease-out;
+		will-change: background-color;
+
+		&:hover,
+		&:focus {
+			background-color: $color-dialog-button-background--hover;
+		}
+	}
+
+	hr {
+		border-bottom: none;
+		border-left: none;
+		border-right: none;
+		border-top: 1px solid $md-grey-400;
+		margin: 1rem 0 0;
+	}
+}
+
+/// `.show-dialog` class is added to `<body>` to reveal dialog window
+.show-dialog .dialog,
+.dialog.dialog--static {
+	&__window {
+		max-width: $size-dialog--max;
+		min-width: $size-dialog--min;
+		opacity: 1;
+		transform: translate(-50%, -50%);
+		width: calc(100% - #{baseline(3)});
+		z-index: $zindex-dialog;
+	}
+
+	&__backdrop {
+		z-index: $zindex-dialog - 1;
+	}
+}
+
+.show-dialog .dialog[aria-hidden='false'],
+.dialog.dialog--static {
+	visibility: visible;
+	z-index: $zindex-dialog;
+}
+
+.dialog.dialog--static .dialog__window {
+	opacity: 1;
+	transform: translate(-50%, -50%);
+}
+
+.no-js .dialog--static ~ * {
+	display: none;
+}

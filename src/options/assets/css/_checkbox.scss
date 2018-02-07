@@ -1,0 +1,71 @@
+///
+/// Tab Downloader
+/// Material Design checkboxes
+///
+
+/// Based on CodePen by Ryan Walters
+/// @link http://jsfiddle.net/RyanWalters/0qr4htdg/
+/// @group Checkbox
+.checkbox {
+	color: $color-checkbox;
+	display: block;
+	margin-bottom: baseline(2);
+	overflow: visible;
+
+	&__input {
+		@include ripple($md-blue-400);
+		display: inline-block;
+		height: 2rem;
+		position: relative;
+		text-align: center;
+		vertical-align: -.6rem;
+		width: 2rem;
+
+		input {
+			bottom: 7px;
+			cursor: pointer;
+			left: 7px;
+			margin: 0;
+			opacity: 0;
+			outline: none;
+			padding: 0;
+			position: absolute;
+			visibility: hidden;
+
+			+ .checkmark::before {
+				-webkit-font-smoothing: antialiased;
+				bottom: .5rem;
+				color: $md-grey-600;
+				content: '\e835';
+				direction: ltr;
+				font: normal 1.5rem $font-family-icons;
+				height: 1.125rem;
+				left: .25rem;
+				letter-spacing: normal;
+				line-height: 1;
+				position: absolute;
+				text-rendering: optimizeLegibility;
+				text-transform: none;
+				transition: all .2s ease; /// @todo Don't use `all` in transition property
+				vertical-align: -.5rem;
+				white-space: nowrap;
+				width: 1.125rem;
+				word-wrap: normal;
+				z-index: 1;
+			}
+
+			&:disabled + .checkmark.checkmark::before {
+				color: $color-checkbox--disabled;
+			}
+
+			&:checked + .checkmark::before {
+				color: $color-checkbox--checked;
+				content: '\e834';
+			}
+
+			&:active:not(:disabled) + .checkmark::before {
+				transform: scale3d(.88, .88, 1);
+			}
+		}
+	}
+}

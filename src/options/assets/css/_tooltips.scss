@@ -1,0 +1,62 @@
+///
+/// Tab Downloader
+/// Material Design CSS tooltips
+///
+
+.tooltip {
+	font: normal .75rem/1.125 $font-family-body;
+	position: relative;
+
+	&::after {
+		@include shadow(8);
+		background: $color-tooltip-background;
+		border-radius: $border-radius--small;
+		color: $md-white;
+		content: attr(data-tooltip);
+		left: 50%;
+		opacity: 0;
+		padding: $padding-tooltip;
+		position: absolute;
+		top: 1.5em;
+		transform: translate(-50%, ($border-radius--small * -1));
+		transition: opacity $duration-base ease(out-cubic), transform $duration-base ease(out-cubic);
+		transition-delay: $duration-tooltip-delay;
+		visibility: hidden;
+		white-space: nowrap;
+		will-change: opacity, transform;
+		z-index: $zindex-tooltip;
+	}
+
+	&:focus {
+		outline: none;
+	}
+
+	/// Use .tooltip--active class to display tooltips with JavaScript
+	/// Use .tooltip--hover to display tooltips on mouse over
+	&--active::after,
+	&--hover:hover::after,
+	&--hover:focus::after{
+		display: block;
+		opacity: 1;
+		transform: translate(-50%, 0);
+		visibility: visible;
+	}
+
+	&--hover:not(:hover)::after {
+		opacity: 0;
+		visibility: visible;
+	}
+
+	&--left {
+		&::after {
+			left: 0;
+			top: (baseline(.25) * -1);
+			transform: translate(-112%, 0);
+		}
+
+		&:hover::after,
+		&:focus::after {
+			transform: translate(-110%, 0);
+		}
+	}
+}

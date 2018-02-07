@@ -1,0 +1,43 @@
+///
+/// Tab Downloader
+/// Attribution
+///
+
+// Credits displayed below Test Run
+.attribution {
+	border-top: 1px solid $md-dark-text-dividers;
+	font-size: .875rem;
+	margin: baseline(8) 0 baseline(4);
+	padding-top: baseline(4);
+
+	&__title {
+		font-size: 1.125em;
+		font-weight: 600;
+		margin: 0;
+	}
+
+	a {
+		@include underline--right();
+		color: $color-attribution-text;
+		text-decoration: none;
+
+		&:hover,
+		&:focus {
+			color: $color-attribution-link;
+		}
+	}
+}
+
+.license {
+	border-bottom: 1px solid $md-grey-300;
+	color: $md-grey-600;
+	font: .825rem $font-family-monospace;
+	letter-spacing: 0;
+	margin-top: 1rem;
+	padding-bottom: 1rem;
+
+	summary {
+		cursor: pointer;
+		font: 600 1rem $font-family-title;
+	}
+}

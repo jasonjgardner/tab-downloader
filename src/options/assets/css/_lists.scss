@@ -1,0 +1,252 @@
+///
+/// Tab Downloader
+/// Fancy lists
+///
+
+.list-wrapper {
+	margin: baseline(2) 0 0 baseline(-2);
+}
+
+.list {
+	list-style-type: none;
+
+	&--stack {
+		color: $md-dark-text-primary;
+		display: flex;
+		flex-flow: row wrap;
+		font-size: 1rem;
+		justify-content: flex-start;
+		letter-spacing: .04em;
+		line-height: 1.5rem;
+		margin: 0;
+		padding: 0;
+
+		> [aria-hidden='true'] {
+			display: none;
+		}
+
+		a {
+			color: currentColor;
+			text-decoration: none;
+		}
+
+		.icon--external {
+			color: $md-grey-400;
+			cursor: pointer;
+			transition: color duration() ease-in;
+			will-change: color;
+		}
+
+		&__icon {
+			color: $md-white;
+			margin-left: .5em;
+			margin-right: 1.5em;
+			width: 1.25em;
+
+			circle {
+				transition: fill duration() ease-in;
+				will-change: fill;
+			}
+		}
+
+		&__item {
+			@include ripple--clip($md-grey-600);
+			align-items: center;
+			display: flex;
+			height: baseline(9);
+			justify-content: flex-end;
+			margin: 0 baseline(2) baseline(2);
+			min-width: baseline(32);
+			transition: box-shadow duration() ease(authentic), transform duration() ease(out-back);
+			width: calc(100% - #{baseline(2)});
+			will-change: box-shadow, transform;
+			z-index: $zindex-nav-tabs - 1;
+
+			&:hover,
+			&:focus {
+				.icon--external {
+					color: $md-blue-500;
+				}
+
+				.icon circle {
+					fill: $md-blue-500;
+				}
+			}
+
+			&.card:hover,
+			&.card:focus {
+				@include shadow(6);
+				transform: translateY(baseline(-1));
+			}
+		}
+
+		&__header {
+			display: inline-flex;
+			flex-direction: column;
+			margin-right: auto;
+
+			> span { // Subtitle
+				color: $md-dark-text-secondary;
+				font-size: .875rem;
+				font-weight: normal;
+				line-height: 1.25em;
+			}
+		}
+
+		@media only screen and (max-width: map-get($breakpoints--max, phone)) {
+			.card {
+				border-radius: 0;
+			}
+
+			&__item {
+				min-width: calc(100vw - #{baseline(10)});
+
+				&:first-child .card {
+					border-top-left-radius: $border-radius--small;
+					border-top-right-radius: $border-radius--small;
+				}
+
+				&:last-child .card {
+					border-bottom-left-radius: $border-radius--small;
+					border-bottom-right-radius: $border-radius--small;
+				}
+			}
+		}
+	}
+
+	&--grid {
+		display: flex;
+		flex-flow: row wrap;
+		margin: 0;
+		padding: 0;
+		width: 100%;
+
+		&__title {
+			@include ripple();
+			align-items: center;
+			background-color: $color-list-grid-item-background;
+			bottom: 0;
+			box-sizing: border-box;
+			color: $color-list-grid-item-text;
+			cursor: pointer;
+			display: flex;
+			font: 500 1.125em/1.45 $font-family-title;
+			height: baseline(3);
+			justify-content: space-between;
+			margin: 0;
+			overflow: hidden;
+			padding: baseline(3) baseline();
+			position: absolute;
+			text-overflow: ellipsis;
+			transition: background-color duration() ease-in, height duration() ease(out-back), padding-left duration(1.125) ease(out-back);
+			white-space: nowrap;
+			width: $size-list-grid-item;
+			will-change: background-color, height, padding-left;
+
+			a {
+				color: currentColor;
+				text-decoration: none;
+			}
+
+			.icon {
+				font-size: $line-height-base;
+				opacity: 0;
+				transition: opacity $duration-base ease-in;
+			}
+		}
+
+		&__item {
+			@include shadow(2);
+			border-radius: $border-radius--small;
+			display: block;
+			margin: baseline(2) baseline(2) 0 0;
+			min-height: baseline(8);
+			min-width: baseline(8);
+			overflow: hidden;
+			position: relative;
+			text-align: left;
+			transition: box-shadow duration(1.25) ease(authentic), transform duration(1.333) ease(out-back);
+			width: $size-list-grid-item;
+			will-change: box-shadow, transform;
+
+			&[aria-hidden='true'] {
+				@extend %hide;
+			}
+
+			&:hover,
+			&:focus {
+				@include shadow(9);
+				transform: translate(baseline(-.5), baseline(-1));
+			}
+		}
+
+		&__item:focus &__title,
+		&__item:hover &__title {
+			height: baseline(8);
+			padding-left: 1em;
+
+			.icon {
+				opacity: 1;
+			}
+		}
+
+		@each $group, $color in $color-filetype-group {
+			&__item[data-group='#{$group}'] &__title {
+				background-color: rgba($color, .88);
+			}
+
+			&__item[data-group='#{$group}']:hover &__title,
+			&__item[data-group='#{$group}']:focus &__title{
+				background-color: $color;
+			}
+		}
+
+		&__background {
+			background: $md-white url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAM0lEQVQ4jWM8c+bMfwY8wNjYGJ80AxNeWSLAqAGDwQDG////400HZ8+epa0LRg0YDAYAAPTKCn5rxJdfAAAAAElFTkSuQmCC');
+			height: 0;
+			overflow: hidden;
+			padding-bottom: calc(100% / 1);
+			position: relative;
+
+			&:empty {
+				min-height: $size-list-grid-item;
+			}
+
+			&__img {
+				bottom: 0;
+				height: 100%;
+				left: 0;
+				position: absolute;
+				right: 0;
+				top: 0;
+				transition: transform duration() ease-out;
+				width: 100%;
+			}
+		}
+	}
+
+	@media only screen and (max-width: map-get($breakpoints--max, phone)) {
+		margin: baseline(2) auto;
+
+		&--grid {
+			flex-flow: row wrap;
+			justify-content: flex-start;
+
+			&__title {
+				width: baseline(11);
+			}
+
+			&__item {
+				box-shadow: none;
+				box-sizing: border-box;
+				margin: baseline(.5);
+				width: baseline(11);
+
+				img {
+					height: baseline(11);
+					width: baseline(11);
+				}
+			}
+		}
+	}
+}

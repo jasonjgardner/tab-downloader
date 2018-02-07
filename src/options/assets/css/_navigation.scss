@@ -1,0 +1,168 @@
+///
+/// Tab Downloader
+/// Navigation
+/// @author Jason Gardner
+/// @group  Navigation
+///
+
+///
+// Tabs
+///
+
+.tabs {
+	display: flex;
+	flex-flow: row nowrap;
+
+	&__nav {
+		color: $md-dark-text-primary;
+		display: flex;
+		flex-flow: column nowrap;
+		font: normal #{$font-size-small}/#{$size-nav-icon} $font-family-title;
+		margin: 0 0 baseline();
+
+		.icon {
+			color: $color-nav-icon;
+			height: $size-nav-icon;
+			padding: $padding-nav-icon;
+			width: $size-nav-icon;
+		}
+
+		a {
+			color: $color-nav--link;
+			padding: 0 baseline(3) 0 0;
+			text-decoration: none;
+
+			&:focus,
+			&:active {
+				outline: none;
+			}
+		}
+
+		.active {
+			background-color: rgba(0, 0, 0, .07);
+			color: $color-nav--active;
+			font-weight: 500;
+
+			a:active,
+			a:focus,
+			.icon {
+				color: $color-nav--active;
+			}
+		}
+
+		p {
+			font-weight: 900;
+			margin: 0 0 $base;
+			text-transform: uppercase;
+		}
+
+		li {
+			@include ripple--clip();
+			align-items: center;
+			border-radius: 0 $border-radius--small $border-radius--small 0;
+			cursor: pointer;
+			display: flex;
+			height: $size-nav-item;
+			min-width: $size-filetype-card;
+			padding: 0 baseline(2) 0 0;
+			transition: background-color duration() ease(out-cubic), box-shadow duration() ease(authentic);
+			user-select: none;
+			vertical-align: middle;
+			white-space: nowrap;
+			will-change: background-color, box-shadow;
+
+			&:hover,
+			&:focus {
+				background-color: rgba(0, 0, 0, .04);
+			}
+		}
+	}
+
+	&__tab {
+		display: none;
+
+		&:target[aria-selected="true"],
+		&.active {
+			display: flex;
+		}
+	}
+
+	&__container {
+		flex: 2 1;
+		padding-left: baseline(); // Adjacent tab has padding which makes the whitespace uneven
+	}
+}
+
+///
+/// Responsive styles
+///
+
+@media screen and (max-width: map-get($breakpoints--min, tablet)) {
+	.tabs {
+		flex-flow: column nowrap;
+		overflow-x: hidden;
+
+		&__container {
+			padding: baseline(2);
+		}
+
+		&__nav {
+			@include shadow(5);
+			background-color: $md-white;
+			bottom: baseline(-1);
+			left: 0;
+			padding: 0; // baseline(4);
+			position: fixed;
+			width: 100%;
+			z-index: $zindex-nav-tabs;
+
+			ul {
+				display: flex;
+				flex-flow: row nowrap;
+				margin: 0;
+				padding: 0;
+			}
+
+			li {
+				align-content: center;
+				border-radius: 0;
+				display: inline-flex;
+				flex: 1 0 33vw;
+				font-weight: bold;
+				justify-content: center;
+				margin: 0;
+				min-width: 0;
+				overflow: hidden;
+				padding: 0;
+				text-align: center;
+				text-overflow: ellipsis;
+				text-transform: uppercase;
+			}
+
+			a {
+				display: none;
+			}
+
+			.icon {
+				padding: 0;
+				margin: 0;
+			}
+
+			.info {
+				border-top: 1px solid $md-dark-text-dividers;
+				margin: baseline(8) auto baseline(2);
+				padding-left: 0;
+				padding-top: baseline(4);
+				width: 100%;
+			}
+		}
+
+		&__tab {
+			justify-content: center;
+		}
+	}
+
+	.nav .active {
+		box-shadow: inset 0 2px 0 0 $color-nav--active;
+	}
+}

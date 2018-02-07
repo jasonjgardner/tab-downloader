@@ -1,0 +1,696 @@
+///
+/// Tab Downloader
+/// Variables
+/// @author Jason Gardner
+///
+
+/// Base size used in all measurements
+/// @group Common
+/// @type  Number
+$base: 8px;
+
+///
+// Typography
+///
+
+/// Root font size. Equals 1rem
+/// @group Typography
+/// @type  Number
+$font-size-root: ceil($base * 2);
+
+/// Default sans-serif font family
+/// @group Typography
+/// @type  String
+$font-family-sans-serif: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+
+/// Default monospace font family
+/// @group Typography
+/// @type  String
+$font-family-monospace: 'Roboto Mono', 'Menlo', 'Monaco', 'Consolas', 'Courier New', monospace;
+
+/// Font family used in body
+/// @group Typography
+/// @type  String
+$font-family-body: $font-family-sans-serif !default;
+
+/// Font family used in body titles/headers
+/// @group Typography
+/// @type  String
+$font-family-title: $font-family-sans-serif !default;
+
+/// Font family used in icon font
+/// @group Typography
+/// @type  String
+$font-family-icons: 'Material Icons';
+
+/// `h1` font size
+/// @group Typography
+/// @type  Number
+$font-size-h1: 4.242rem;
+
+/// `h2` font size
+/// @group Typography
+/// @type  Number
+$font-size-h2: ($font-size-h1 * .666);
+
+/// `h3` font size
+/// @group Typography
+/// @type  Number
+$font-size-h3: ($font-size-h2 * .5);
+
+/// `h4` font size
+/// @group Typography
+/// @type  Number
+$font-size-h4: ($font-size-h3 * .5);
+
+/// `h5` font size
+/// @group Typography
+/// @type  Number
+$font-size-h5: ($font-size-h4 * .666);
+
+/// `h6` font size
+/// @group Typography
+/// @type  Number
+$font-size-h6: ($font-size-h5 * .75);
+
+/// Font size for less-important text
+/// @group Typography
+/// @type  Number
+$font-size-small: .875rem;
+
+/// Standard line height
+/// @group Typography
+/// @type  Number
+$line-height-base: 1.5rem;
+
+///
+// Colors
+///
+
+/// Material Design color palette implicitly imported from `node_modules`
+@import 'material-colors/dist/colors.scss';
+
+/// Main color to use throughout page
+/// @group Common
+/// @type  Color
+$color--primary: $md-blue-a200 !default;
+
+/// Secondary color to use as accent throughout the page
+/// @group Common
+/// @type  Color
+$color--accent: $md-red-600 !default;
+
+/// Body background color
+/// @group Common
+/// @type  Color
+$color-background: $md-grey-100 !default;
+
+/// Body text color
+/// @group Common
+/// @type  Color
+$color-text: $md-dark-text-secondary !default;
+
+/// Titles text color
+/// @group Common
+/// @type  Color
+$color-title: $md-dark-text-primary !default;
+
+/// Text color in attribution paragraph
+/// @group Attribution
+/// @type  Color
+$color-attribution-text: $md-dark-text-primary !default;
+
+/// Link color in attribution paragraph
+/// @group Attribution
+/// @type  Color
+$color-attribution-link: $md-blue-600 !default;
+
+/// Colors to identify each file type
+/// @group File type
+/// @prop {Color} $color-filetype-group.audio [$md-pink-400] - Color associated with audio files
+/// @prop {Color} $color-filetype-group.code [$md-indigo-500] - Color associated with code files
+/// @prop {Color} $color-filetype-group.documents [$md-blue-400] - Color associated with text files
+/// @prop {Color} $color-filetype-group.images [$md-teal-500] - Color associated with image files
+/// @prop {Color} $color-filetype-group.video [$md-red-700] - Color associated with image files
+$color-filetype-group: (
+	audio:     $md-pink-400,
+	code:      $md-indigo-500,
+	documents: $md-blue-400,
+	images:    $md-teal-500,
+	video:     $md-red-700
+);
+
+/// Brand/header title text color
+/// @group Header
+/// @type  Color
+$color-header-title: $md-grey-800 !default;
+
+/// Default text color in header
+/// @group Header
+/// @type  Color
+$color-header-text: $md-dark-text-secondary !default;
+
+/// Background color used to highlight a selected file type
+/// @group File type
+/// @type  Color
+$color-filetype--active: $md-blue-500 !default;
+
+/// Text color used in a selected file type
+/// @group File type
+/// @type  Color
+$color-filetype-text--active: $md-white !default;
+
+/// Background color for selected file type `:focus` state
+/// @group File type
+/// @type  Color
+$color-filetype--focus: $md-blue-600 !default;
+
+/// Outline color for file type `:focus` state
+/// @group File type
+/// @type  Color
+$color-filetype-outline: $md-blue-700 !default;
+
+/// Outline color for a selected file type `:focus` state
+/// @group File type
+/// @type  Color
+$color-filetype-outline--inverse: $md-light-blue-300 !default;
+
+/// Default background color used in thumbnail title. The background color is replaced by `[data-group]` styles.
+/// @see $color-filetype-group
+/// @group File type
+/// @type Color
+$color-list-grid-item-background: $md-indigo-500 !default;
+
+/// Default text color used in thumbnail title
+/// @group File type
+/// @type Color
+$color-list-grid-item-text: $md-white !default;
+
+/// Checkbox border color
+/// @group Checkbox
+/// @type  Color
+$color-checkbox-border: rgba(0, 0, 0, .54);
+
+/// Disabled checkbox border color
+/// @group Checkbox
+/// @type  Color
+$color-checkbox-border--disabled: rgba(0, 0, 0, .26);
+
+/// Selected checkbox border color
+/// @group Checkbox
+/// @type  Color
+$color-checkbox--checked: $md-blue-500 !default;
+
+/// Disabled checkbox background color
+/// @group Checkbox
+/// @type  Color
+$color-checkbox--disabled: rgba($md-grey-600, .157);
+
+/// Checkbox label text color
+/// @group Checkbox
+/// @type  Color
+$color-checkbox: #818181;
+
+/// Primary button background color
+/// @group Button
+/// @type  Color
+$color-button--primary: $md-blue-a400 !default;
+
+/// Text color of primary button
+/// @group Button
+/// @type  Color
+$color-button-text--primary: $md-white !default;
+
+/// Tooltip background color
+/// @group Tooltip
+/// @type  Color
+$color-tooltip-background: rgba(97, 97, 97, .9);
+
+/// Color of backdrop/overlay when dialog is visible
+/// @group Dialog
+/// @type  Color
+$color-dialog-overlay: rgba(0, 0, 0, .88);
+
+/// Color of dialog title text
+/// @group Dialog
+/// @type  Color
+$color-dialog-header: $md-grey-800 !default;
+
+/// Color of dialog body text
+/// @group Dialog
+/// @type  Color
+$color-dialog-text: $md-grey-700 !default;
+
+/// Color of dialog button text
+/// @group Dialog
+/// @type  Color
+$color-dialog-button: $md-indigo-500 !default;
+
+/// Color of links inside dialogs
+/// @group Dialog
+/// @type  Color
+$color-dialog-link: $md-indigo-400 !default;
+
+/// Background color of dialog button on mouse over
+/// @group Dialog
+/// @type  Color
+$color-dialog-button-background--hover: rgba(0, 0, 0, .06);
+
+/// Background color of snack bars
+/// @group Snack bar
+/// @type  Color
+$color-snackbar-background: $md-grey-800 !default;
+
+/// Default background color of `.card`s
+/// @group Card
+/// @type  Color
+$color-card-background: $md-white !default;
+
+/// Text color of active navigation item
+/// @group Navigation
+/// @type  Color
+$color-nav--active: $md-blue-600 !default;
+
+/// Text color of navigation link
+/// @group Navigation
+/// @type  Color
+$color-nav--link: $md-dark-text-primary !default;
+
+/// Color of navigation icon
+/// @group Navigation
+/// @type  Color
+$color-nav-icon: $md-grey-700 !default;
+
+/// Footer background color
+/// @group Footer
+/// @type  Color
+$color-footer-background: $md-grey-200 !default;
+
+/// Footer text color
+/// @group Footer
+/// @type  Color
+$color-footer-text: $md-grey-500 !default;
+
+/// Footer link :hover color
+/// @group Footer
+/// @type  Color
+$color-footer-link--hover: $md-blue-500 !default;
+
+/// Color of author name in footer credits
+/// @group Footer
+/// @type  Color
+$color-author: $md-teal-a700; // $md-deep-orange-500; // $md-amber-900; // $md-blue-a700
+
+///
+// Shadows
+///
+
+/// Shadow umbra color
+/// @group Shadow
+/// @type  Color
+$shadow-umbra-color: rgba(0, 0, 0, .2);
+
+/// Shadow penumbra color
+/// @group Shadow
+/// @type  Color
+$shadow-penumbra-color: rgba(0, 0, 0, .14);
+
+/// Shadow ambient color
+/// @group Shadow
+/// @type  Color
+$shadow-ambient-color: rgba(0, 0, 0, .12);
+
+/// Umbra box-shadow values
+/// @group Shadow
+/// @type  Map
+$shadow-umbra-map: (
+	0: '0 0 0 0',
+	1: '0 2px 1px -1px',
+	2: '0 3px 1px -2px',
+	3: '0 3px 3px -2px',
+	4: '0 2px 4px -1px',
+	5: '0 3px 5px -1px',
+	6: '0 3px 5px -1px',
+	7: '0 4px 5px -2px',
+	8: '0 5px 5px -3px',
+	9: '0 5px 6px -3px',
+	10: '0 6px 6px -3px',
+	11: '0 6px 7px -4px',
+	12: '0 7px 8px -4px',
+	13: '0 7px 8px -4px',
+	14: '0 7px 9px -4px',
+	15: '0 8px 9px -5px',
+	16: '0 8px 10px -5px',
+	17: '0 8px 11px -5px',
+	18: '0 9px 11px -5px',
+	19: '0 9px 12px -6px',
+	20: '0 10px 13px -6px',
+	21: '0 10px 13px -6px',
+	22: '0 10px 14px -6px',
+	23: '0 11px 14px -7px',
+	24: '0 11px 15px -7px'
+);
+
+/// Penumbra box-shadow values
+/// @group Shadow
+/// @type  Map
+$shadow-penumbra-map: (
+	0: '0 0 0 0',
+	1: '0 1px 1px 0',
+	2: '0 2px 2px 0',
+	3: '0 3px 4px 0',
+	4: '0 4px 5px 0',
+	5: '0 5px 8px 0',
+	6: '0 6px 10px 0',
+	7: '0 7px 10px 1px',
+	8: '0 8px 10px 1px',
+	9: '0 9px 12px 1px',
+	10: '0 10px 14px 1px',
+	11: '0 11px 15px 1px',
+	12: '0 12px 17px 2px',
+	13: '0 13px 19px 2px',
+	14: '0 14px 21px 2px',
+	15: '0 15px 22px 2px',
+	16: '0 16px 24px 2px',
+	17: '0 17px 26px 2px',
+	18: '0 18px 28px 2px',
+	19: '0 19px 29px 2px',
+	20: '0 20px 31px 3px',
+	21: '0 21px 33px 3px',
+	22: '0 22px 35px 3px',
+	23: '0 23px 36px 3px',
+	24: '0 24px 38px 3px'
+);
+
+/// Ambient box-shadow values
+/// @group Shadow
+/// @type  Map
+$shadow-ambient-map: (
+	0: '0 0 0 0',
+	1: '0 1px 3px 0',
+	2: '0 1px 5px 0',
+	3: '0 1px 8px 0',
+	4: '0 1px 10px 0',
+	5: '0 1px 14px 0',
+	6: '0 1px 18px 0',
+	7: '0 2px 16px 1px',
+	8: '0 3px 14px 2px',
+	9: '0 3px 16px 2px',
+	10: '0 4px 18px 3px',
+	11: '0 4px 20px 3px',
+	12: '0 5px 22px 4px',
+	13: '0 5px 24px 4px',
+	14: '0 5px 26px 4px',
+	15: '0 6px 28px 5px',
+	16: '0 6px 30px 5px',
+	17: '0 6px 32px 5px',
+	18: '0 7px 34px 6px',
+	19: '0 7px 36px 6px',
+	20: '0 8px 38px 7px',
+	21: '0 8px 40px 7px',
+	22: '0 8px 42px 7px',
+	23: '0 9px 44px 8px',
+	24: '0 9px 46px 8px'
+);
+
+///
+// Measurements
+///
+
+/// Minimum width of snack bars
+/// @group Snack bar
+/// @type  Number
+$size-snackbar--min: ceil($base * 36);
+
+/// Maximum width of snack bars
+/// @group Snack bar
+/// @type  Number
+$size-snackbar--max: ceil($base * 72);
+
+/// Minimum width of dialogs
+/// @group Dialog
+/// @type  Number
+$size-dialog--min: ceil($base * 80);
+
+/// Minimum width of dialogs
+/// @group Dialog
+/// @type  Number
+$size-dialog--max: ceil($base * 108);
+
+/// Minimum height of cards
+/// @group Cards
+/// @type  Number
+$size-card-height--min: ceil($base * 18);
+
+/// Minimum width of cards
+/// @group Cards
+/// @type  Number
+$size-card-width--min: ceil($size-card-height--min * 2);
+
+/// Radius of FABs
+/// @group FAB
+/// @type  Number
+$size-fab: ceil($base * 6);
+
+/// Width/height of icons in buttons
+/// @group Button
+/// @type  Number
+$size-button-icon: 50%;
+
+/// Width/height of test run thumbnails
+/// @group Test Run
+/// @type  Number
+$size-list-grid-item: ceil($base * 20);
+
+/// Page wrapper width
+/// @group Common
+/// @type  Number
+$size-container--max: ceil($base * 120);
+
+/// Default width of file type cards
+/// @group File type
+/// @type  Number
+$size-filetype-card: ceil($base * 25);
+
+/// Maximum width of file type cards
+/// @group File type
+/// @type  List | Number
+$size-filetype-card--max-width: ceil($size-filetype-card * 1.125) ;
+
+/// Minimum width of file type cards
+/// @group File type
+/// @type  Number
+$size-filetype-card--min-width: ceil($base * 18.25); //ceil($size-filetype-card * .925);
+
+/// Maximum height of file type cards
+/// @group File type
+/// @type  Number
+$size-filetype-card--max-height: ceil($base * 2);
+
+/// Width and height of checkboxes
+/// @group Checkbox
+/// @type  Number
+$size-checkbox: ceil($base * 4);
+
+/// Height of navigation item
+/// @group Navigation
+/// @type  Number
+$size-nav-item: ceil($base * 6);
+
+/// Width and height of navigation item icon
+/// @group Navigation
+/// @type  Number
+$size-nav-icon: ceil($base * 3);
+
+/// Size of icons in `.filetype-header`
+/// @group File type
+/// @type  Number
+$size-filetype-header-icon: 1.375rem;
+
+/// Scale offset added to background size and subtracted from image size. The background grows as the foreground shrinks
+/// @group List
+/// @type  Number
+$scale-list-item-background: .045;
+
+/// Padding
+
+/// Padding in tooltips
+/// @group Tooltip
+/// @type  Number
+$padding-tooltip: $base !default;
+
+/// Padding in dialog footer
+/// @group Dialog
+/// @type  Number
+$padding-dialog-footer: $base !default;
+
+/// Padding in cards
+/// @group Card
+/// @type  Number
+$padding-card: ceil($base * 2);
+
+/// Extra padding in cards
+/// @group Card
+/// @type  Number
+$padding-card--large: ceil($padding-card * 2);
+
+/// Gutter size around navigation icon
+/// @group Navigation
+/// @type  Number
+$padding-nav-icon: ceil($base * 2) ceil($base * 3);
+
+/// Border radius
+
+/// Smallest border radius value to use
+/// @group Common
+/// @type  Number
+$border-radius--small: round($base * .25);
+
+/// Transformations
+
+/// Offset applied to a selected file type on hover
+/// @group File type
+/// @type  Transformation
+$translate-filetype--checked--hover: translate(-1px, -4px);
+
+/// Offset applied to a selected file type's `:active` state
+/// @group File type
+/// @type  Transformation
+$translate-filetype--checked--active: translate(0, 1px);
+
+/// Offset applied to a focused file type
+/// @group File type
+/// @type  Transformation
+$translate-filetype--focus: translate(0, -2px);
+
+/// Offset applied to an active file type selection
+/// @group File type
+/// @type  Transformation
+$translate-filetype--active: translate(0, 1px);
+
+///
+// Durations
+///
+
+/// Base time used in calculating all durations
+/// @group Common
+/// @type  Number | Duration
+$duration-base: .25s;
+
+/// `transition-delay` value used when revealing tool tips
+/// @group Tooltip
+/// @type  Number | Duration
+$duration-tooltip-delay: ($duration-base * 1.5);
+
+///
+// Transitions
+///
+
+/// Default transition applied to `.btn`
+/// @group Button
+/// @type  String
+$transition--btn: background-color $duration-base ease-out, box-shadow $duration-base ease-out;
+
+///
+// Depth
+///
+
+/// `z-index` value applied to tooltips
+/// @group Tooltip
+/// @type  Number
+$zindex-tooltip: 2;
+
+/// `z-index` value applied to snack bars
+/// @group Snack bar
+/// @type  Number
+$zindex-snackbar: $zindex-tooltip + 1;
+
+/// `z-index` value applied to dialogs. This value should have the highest elevation.
+/// @group Dialog
+/// @type  Number
+$zindex-dialog: max($zindex-snackbar, $zindex-tooltip) + 2;
+
+/// `z-index` value applied to navigation tabs on small screens. Place this below dialogs and tooltips.
+/// @group Navigation
+/// @type  Number
+$zindex-nav-tabs:  $zindex-tooltip - 1;
+
+///
+// Easing
+///
+
+/// Easing function map
+/// @link http://easings.net
+/// @group Animation
+/// @type  Map
+$ease: (
+	in-quad:      cubic-bezier(.55, .085, .68, .53),
+	in-cubic:     cubic-bezier(.55, .055, .675, .19),
+	in-quart:     cubic-bezier(.895, .03, .685, .22),
+	in-quint:     cubic-bezier(.755, .05, .855, .06),
+	in-sine:      cubic-bezier(.47, 0, .745, .715),
+	in-expo:      cubic-bezier(.95, .05, .795, .035),
+	in-circ:      cubic-bezier(.6, .04, .98, .335),
+	in-back:      cubic-bezier(.6, -.28, .735, .045),
+	out-quad:     cubic-bezier(.25, .46, .45, .94),
+	out-cubic:    cubic-bezier(.215, .61, .355, 1),
+	out-quart:    cubic-bezier(.165, .84, .44, 1),
+	out-quint:    cubic-bezier(.23, 1, .32, 1),
+	out-sine:     cubic-bezier(.39, .575, .565, 1),
+	out-expo:     cubic-bezier(.19, 1, .22, 1),
+	out-circ:     cubic-bezier(.075, .82, .165, 1),
+	out-back:     cubic-bezier(.175, .885, .32, 1.275),
+	in-out-quad:  cubic-bezier(.455, .03, .515, .955),
+	in-out-cubic: cubic-bezier(.645, .045, .355, 1),
+	in-out-quart: cubic-bezier(.77, 0, .175, 1),
+	in-out-quint: cubic-bezier(.86, 0, .07, 1),
+	in-out-sine:  cubic-bezier(.445, .05, .55, .95),
+	in-out-expo:  cubic-bezier(1, 0, 0, 1),
+	in-out-circ:  cubic-bezier(.785, .135, .15, .86),
+	in-out-back:  cubic-bezier(.68, -.55, .265, 1.55),
+	authentic:    cubic-bezier(.4, 0, .2, 1),
+	shadows:      cubic-bezier(.25, .8, .25, 1),
+	dialog:       cubic-bezier(0, 0, .2, 1)
+);
+
+///
+// Media Queries
+///
+
+/// Minimum widths of media query breakpoints
+/// @group Media Queries
+/// @type  Map
+$breakpoints--min: (
+	phone: 320px,
+	tablet: 768px,
+	laptop: 1224px,
+	desktop: 1824px
+);
+
+/// Maximum widths of media query breakpoints
+/// @group Media Queries
+/// @type  Map
+$breakpoints--max: (
+	phone: 480px,
+	tablet: 1024px,
+	laptop: 1224px,
+	desktop: 1824px
+);
+
+/// Media query breakpoint range
+/// @group Media Queries
+/// @type  Map
+$media-queries: (
+	phone: (map-get($breakpoints--min, phone), map-get($breakpoints--max, phone)),
+	tablet: (map-get($breakpoints--min, tablet), map-get($breakpoints--max, tablet)),
+	laptop: (map-get($breakpoints--min, laptop), map-get($breakpoints--max, laptop)),
+	desktop: (map-get($breakpoints--min, desktop), map-get($breakpoints--max, desktop))
+);
+
+///
+/// Placeholders
+///
+
+%hide {
+	display: none;
+}

@@ -1,0 +1,39 @@
+///
+/// Tab Downloader
+/// Cards
+///
+
+.card {
+	@include shadow(2);
+	background-color: $color-card-background;
+	border-radius: $border-radius--small;
+	box-sizing: border-box;
+	min-height: baseline(3);
+	min-width: baseline(12);
+	overflow: hidden;
+	padding: $padding-card;
+	text-align: left;
+	transition: box-shadow $duration-base ease(authentic);
+	will-change: box-shadow;
+
+	&--active {
+		@include shadow(10);
+	}
+
+	&--large {
+		padding: $padding-card--large;
+	}
+
+	h1,
+	h2,
+	h3 {
+		color: $md-dark-text-primary;
+		font-weight: 500;
+		margin: 0 0 .5em;
+	}
+
+	h2 {
+		font-size: 1.25rem;
+		line-height: 2;
+	}
+}

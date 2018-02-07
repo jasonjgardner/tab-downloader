@@ -1,0 +1,159 @@
+///
+/// Tab Downloader
+/// Mixins and Functions
+///
+
+///
+// Functions
+///
+
+/// Helper function for calculating baseline sizes
+/// @param {Number} $multiplier [1] The factor by which the base size will be scaled
+/// @return {Number | Boolean} Returns the product of `$multiplier` and `$base` *rounded up*. Returns false if `$base` is undefined
+@function baseline($multiplier: 1) {
+	@if not variable-exists('base') {
+		@warn 'A base size must be set.';
+		@return false;
+	}
+
+	@return ceil($base * $multiplier);
+}
+
+/// Helper function for calculating durations
+/// @param {Number} $multiplier [1] The factor by which the base duration will be altered
+/// @return {Number | Boolean} Returns the absolute value of the product of `$multiplier` and `$duration-base`. Returns false if `$duration-base` is undefined
+@function duration($multiplier: 1) {
+	@if not variable-exists('duration-base') {
+		@warn 'A base duration must be set.';
+		@return false;
+	}
+
+	@return abs($duration-base * $multiplier);
+}
+
+/// Return an easing function from the `$ease` map
+/// @see $ease
+/// @param {String} $key Easing function name
+/// @return {String | Null} Returns the `cubic-bezier` function associated with `$key`. Returns `null` if key is not found.
+@function ease($key) {
+	$key: unquote($key);
+
+	@if map-has-key($ease, $key) {
+		@return map-get($ease, $key);
+	}
+
+	@warn 'Unkown "#{$key}" in $ease.';
+	@return null;
+}
+
+///
+// Mixins
+///
+
+/// Creates Material Design-ish ripple effect. Based on work by [mladenplavsic](https://github.com/mladenplavsic/css-ripple-effect)
+/// @link https://mladenplavsic.github.io/css-ripple-effect/ Source documentation and examples
+/// @access public
+/// @param {String}        $color    [$md-white]   CSS color value used in ripple background
+/// @param {String|Number} $duration [duration(2)] Transition duration is seconds
+/// @param {String}        $position [relative]    Element positioning property
+@mixin ripple($color: $md-white, $duration: duration(2), $position: relative, $contain: false) {
+	@if ($contain) {
+		overflow: hidden;
+	}
+
+	position: $position;
+
+	&::after {
+		background: radial-gradient(circle, $color, 10%, transparent 10.01%) no-repeat 50%;
+		content: '';
+		display: block;
+		height: 100%;
+		left: 0;
+		opacity: 0;
+		pointer-events: none;
+		position: absolute;
+		top: 0;
+		transform: scale(10, 10);
+		transition: transform $duration ease(out-quint), opacity $duration linear;
+		width: 100%;
+		will-change: opacity, transform;
+	}
+
+	&:active::after {
+		opacity: .2;
+		transform: scale(0, 0);
+		transition: none 0s;
+	}
+}
+
+/// Hides ripples which expand beyond element's size
+/// @require ripple - Unmasked ripple effect mixin
+/// @param {String}        $color    [$md-white]   CSS color value used in ripple background
+/// @param {String|Number} $duration [duration(2)] Transition duration is seconds
+/// @param {String}        $position [relative]    Element positioning property
+@mixin ripple--clip($color: $md-white, $duration: duration(2), $position: relative) {
+	@include ripple($color, $duration, $position);
+	overflow: hidden;
+}
+
+/// Elevation box-shadow mixin
+/// @see $shadow-umbra-map
+/// @see $shadow-penumbra-map
+/// @see $shadow-ambient-map
+/// @param {Number} $z-value Elevation value to select from shadow maps
+/// @param {Color} $color-umbra [$shadow-umbra-color] Shadow umbra color
+/// @param {Color} $color-penumbra [$shadow-penumbra-color] Shadow penumbra color
+/// @param {Color} $color-ambient [$shadow-ambient-color] Shadow ambient color
+@mixin shadow($z-value, $color-umbra: $shadow-umbra-color, $color-penumbra: $shadow-penumbra-color, $color-ambient: $shadow-ambient-color) {
+	box-shadow: #{map-get($shadow-umbra-map, $z-value)} $color-umbra,
+		#{map-get($shadow-penumbra-map, $z-value)} $color-penumbra,
+		#{map-get($shadow-ambient-map, $z-value)} $color-ambient;
+}
+
+/// Attempts to remove browser's default style/appearance for `<button>`
+/// @access public
+/// @param {Color} $background-color [transparent] Color value to use in button's `background-color` property
+@mixin btn-reset($background-color: transparent) {
+	-webkit-tap-highlight-color: transparent;
+	background-color: $background-color;
+	border: 0;
+	outline: none;
+	user-select: none;
+
+	&:active {
+		-webkit-tap-highlight-color: transparent;
+		box-shadow: none;
+	}
+
+	&:focus,
+	&:active:focus {
+		outline: none;
+	}
+}
+
+/// Draws an animated underline from left to right
+/// @access public
+/// @param {Number}            $size-underline                [2px]         The height of the underline
+/// @param {Number | Duration} $transition-duration-underline [duration(2)] The duration of the underline animation
+@mixin underline--right($size-underline: 2px, $transition-duration-underline: duration(2)) {
+	overflow: hidden;
+	padding-bottom: ceil($size-underline * 2);
+	position: relative;
+
+	&::before {
+		background-color: currentColor;
+		bottom: 0;
+		content: '';
+		height: $size-underline;
+		left: 0;
+		position: absolute;
+		right: 100%;
+		transition: right $transition-duration-underline ease(out-expo);
+		will-change: right;
+	}
+
+	&:hover::before,
+	&:focus::before {
+		right: 0;
+	}
+}

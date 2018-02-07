@@ -1,0 +1,27 @@
+///
+/// Tab Downloader
+/// Animations
+///
+
+/// Underline center animation
+/// Used with mixin: underline--center
+@keyframes underline {
+	from {
+		width: 0;
+	}
+
+	to {
+		width: 100%;
+	}
+}
+
+/// Undo shrinking and opaquing
+@keyframes reveal {
+	50% {
+		opacity: 1;
+	}
+
+	100% {
+		transform: none;
+	}
+}

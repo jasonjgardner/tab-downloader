@@ -1,0 +1,41 @@
+///
+/// Tab Downloader
+/// Buttons
+///
+
+.btn {
+	@include ripple--clip();
+	@include btn-reset();
+	align-items: center;
+	border: 0;
+	border-radius: $border-radius--small;
+	color: $color-button-text--primary;
+	cursor: pointer;
+	display: inline-flex;
+	font: 600 #{$font-size-small}/1.428 $font-family-title;
+	justify-content: center;
+	margin: 0;
+	outline: 0;
+	overflow: hidden;
+	padding: $base;
+	text-align: center;
+	text-decoration: none;
+	text-overflow: ellipsis;
+	text-transform: uppercase;
+	transition: $transition--btn;
+	vertical-align: middle;
+	white-space: nowrap;
+	will-change: background-color, box-shadow;
+
+	&:hover::before,
+	&:focus::before {
+		opacity: .6;
+		transition-duration: duration(3);
+	}
+
+	.icon {
+		color: currentColor;
+		font-size: 1.25rem;
+		margin-right: .5em;
+	}
+}

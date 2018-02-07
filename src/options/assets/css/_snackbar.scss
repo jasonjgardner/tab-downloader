@@ -1,0 +1,86 @@
+///
+/// Tab Downloader
+/// Material Design snack bar
+/// @link http://codepen.io/wibblymat/pen/avAjq
+///
+
+/// Snackbar container
+/// Prevents snackbar from triggering browser's scroll bar
+.snackwrap {
+	bottom: 0;
+	height: baseline(15);
+	overflow: hidden;
+	position: fixed;
+	width: $size-snackbar--max;
+
+	&:empty {
+		@extend %hide;
+	}
+}
+
+.snackbar {
+	@include shadow(5);
+	align-items: center;
+	background-color: $md-grey-800;
+	bottom: 0;
+	color: $md-white;
+	cursor: default;
+	display: flex;
+	font-family: $font-family-body;
+	font-size: $font-size-small;
+	justify-content: space-between;
+	line-height: $base;
+	min-height: $font-size-small;
+	opacity: 0;
+	padding: 1.286em 1.786em;
+	position: absolute;
+	transition-duration: duration(2);
+	transition-property: opacity, transform, left, right, width, margin;
+	transition-timing-function: ease, ease, ease, ease, ease-in, ease(out-back);
+	z-index: $zindex-snackbar;
+
+	&__action {
+		@include ripple($md-grey-600);
+		background: inherit;
+		border: none;
+		color: $md-yellow-500;
+		cursor: pointer;
+		display: inline-block;
+		font-size: inherit;
+		font-weight: 500;
+		margin: 0 0 0 $base;
+		min-width: min-content;
+		padding: 0;
+		text-transform: uppercase;
+
+		&:active,
+		&:focus {
+			color: $md-yellow-100;
+			outline: none;
+		}
+	}
+}
+
+@media screen and (max-width: 960px) {
+	.snackwrap {
+		bottom: baseline(6);
+		max-width: 100vw;
+		width: 100%;
+	}
+
+	.snackbar {
+		left: 0;
+		right: 0;
+	}
+}
+
+@media screen and (min-width: 961px) {
+	.snackbar {
+		border-radius: $border-radius--small;
+		display: inline-flex;
+		margin: $base;
+		max-width: $size-snackbar--max;
+		min-width: $size-snackbar--min;
+		transform: translateY(baseline(5));
+	}
+}

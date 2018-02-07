@@ -1,0 +1,246 @@
+{
+  "webstoreId": "hlepdmnpkgdfieldklclbncpkonfmbnh",
+  "repo": "https://github.com/jasonjgardner/tab-downloader/",
+  "repoHost": "GitHub",
+  "thumbnailSize": 200,
+  "icons": {
+    "select": "plus--c",
+    "settings": "settings",
+    "testRun": "play--o"
+  },
+  "fileTypes": [
+    {
+      "label": "bmp",
+      "value": "bmp",
+      "icon": "bmp",
+      "group": "images",
+      "demos": [
+        {
+          "img": "http://jgardner.s3.amazonaws.com/tab-downloader/demo/1.bmp",
+          "href": "http://jgardner.s3.amazonaws.com/tab-downloader/demo/1.bmp"
+        },
+        {
+          "img": "http://jgardner.s3.amazonaws.com/tab-downloader/demo/2.bmp",
+          "href": "http://jgardner.s3.amazonaws.com/tab-downloader/demo/2.bmp"
+        }
+      ]
+    },
+    {
+      "label": "gif",
+      "value": "gif",
+      "icon": "gif",
+      "group": "images",
+      "demos": [
+        {
+          "img": "https://s3-us-west-2.amazonaws.com/jgardner/tab-downloader/demo/2.gif",
+          "href": "https://s3-us-west-2.amazonaws.com/jgardner/tab-downloader/demo/2.gif"
+        },
+        {
+          "img": "https://s3-us-west-2.amazonaws.com/jgardner/tab-downloader/demo/3.gif",
+          "href": "https://s3-us-west-2.amazonaws.com/jgardner/tab-downloader/demo/3.gif"
+        }
+      ]
+    },
+    {
+      "label": "jpg",
+      "value": "jpg,jpeg",
+      "icon": "jpeg",
+      "group": "images",
+      "demos": [
+        {
+          "img": "https://s3-us-west-2.amazonaws.com/jgardner/tab-downloader/demo/1.jpg",
+          "href": "https://s3-us-west-2.amazonaws.com/jgardner/tab-downloader/demo/1.jpg"
+        },
+        {
+          "img": "https://s3-us-west-2.amazonaws.com/jgardner/tab-downloader/demo/2.jpg",
+          "href": "https://s3-us-west-2.amazonaws.com/jgardner/tab-downloader/demo/2.jpg"
+        }
+      ]
+    },
+    {
+      "label": "png",
+      "value": "png,apng",
+      "icon": "png",
+      "group": "images",
+      "demos": [
+        {
+          "img": "https://s3-us-west-2.amazonaws.com/jgardner/tab-downloader/demo/1.png",
+          "href": "https://s3-us-west-2.amazonaws.com/jgardner/tab-downloader/demo/1.png"
+        },
+        {
+          "img": "https://s3-us-west-2.amazonaws.com/jgardner/tab-downloader/demo/2.png",
+          "href": "https://s3-us-west-2.amazonaws.com/jgardner/tab-downloader/demo/2.png"
+        }
+      ]
+    },
+    {
+      "label": "svg",
+      "value": "svg",
+      "icon": "svg",
+      "group": "images",
+      "demos": [
+        {
+          "img": "https://s3-us-west-2.amazonaws.com/jgardner/tab-downloader/demo/1.svg",
+          "href": "https://s3-us-west-2.amazonaws.com/jgardner/tab-downloader/demo/1.svg"
+        },
+        {
+          "img": "https://s3-us-west-2.amazonaws.com/jgardner/tab-downloader/demo/2.svg",
+          "href": "https://s3-us-west-2.amazonaws.com/jgardner/tab-downloader/demo/2.svg"
+        }
+      ]
+    },
+    {
+      "label": "WebP",
+      "value": ["webp", "wbp"],
+      "icon": "webp",
+      "group": "images",
+      "demos": [
+        {
+          "img": "https://s3-us-west-2.amazonaws.com/jgardner/tab-downloader/demo/1.webp",
+          "href": "https://s3-us-west-2.amazonaws.com/jgardner/tab-downloader/demo/1.webp"
+        },
+        {
+          "img": "https://s3-us-west-2.amazonaws.com/jgardner/tab-downloader/demo/2.webp",
+          "href": "https://s3-us-west-2.amazonaws.com/jgardner/tab-downloader/demo/2.webp"
+        }
+      ]
+    },
+    {
+      "label": "txt",
+      "value": "txt",
+      "icon": "txt",
+      "group": "documents",
+      "demos": [
+        {
+          "href": "https://jgardner.s3.amazonaws.com/tab-downloader/demo/Shakespeare.txt"
+        }
+      ]
+    },
+    {
+      "label": "pdf",
+      "value": "pdf",
+      "icon": "pdf",
+      "group": "documents",
+      "demos": [
+        {
+          "href": "https://jgardner.s3.amazonaws.com/tab-downloader/demo/CalculusMadeEasy.pdf"
+        }
+      ]
+    },
+    {
+      "label": "csv",
+      "value": "csv",
+      "icon": "file--csv",
+      "group": "documents",
+      "demos": [
+        {
+          "href": "https://jgardner.s3.amazonaws.com/tab-downloader/demo/States.csv"
+        }
+      ]
+    },
+    {
+      "label": "md",
+      "value": "md",
+      "icon": "markdown",
+      "group": "documents",
+      "demos": [
+        {
+          "href": "https://github.com/jasonjgardner/tab-downloader/README.md"
+        }
+      ]
+    },
+    {
+      "label": "html",
+      "value": "html,htm",
+      "icon": "html",
+      "group": "code",
+      "demos": [
+        {
+          "href": "https://jgardner.s3.amazonaws.com/tab-downloader/demo/ThankYou.html"
+        }
+      ]
+    },
+    {
+      "label": "xml",
+      "value": "xml",
+      "icon": "code--tags",
+      "group": "code",
+      "demos": [
+        {
+          "href": "https://jgardner.s3.amazonaws.com/tab-downloader/demo/rss.xml"
+        }
+      ]
+    },
+    {
+      "label": "mp3",
+      "value": "mp3",
+      "icon": "audio--music",
+      "group": "audio",
+      "demos": [
+        {
+          "href": "https://jgardner.s3.amazonaws.com/tab-downloader/demo/ElevatorMusic.mp3"
+        }
+      ]
+    },
+    {
+      "label": "wav",
+      "value": "wav",
+      "icon": "audio--microphone",
+      "group": "audio",
+      "demos": [
+        {
+          "href": "https://jgardner.s3.amazonaws.com/tab-downloader/demo/WilhelmScream.wav"
+        }
+      ]
+    },
+    {
+      "label": "ogg",
+      "value": "ogg,oga,ogm,ogv",
+      "icon": "audio--record",
+      "group": "audio",
+      "demos": []
+    },
+    {
+      "label": "flac",
+      "value": "flac",
+      "icon": "wave",
+      "group": "audio",
+      "demos": []
+    },
+    {
+      "label": "WebM",
+      "value": "webm",
+      "icon": "play",
+      "group": "audio",
+      "demos": []
+    },
+    {
+      "label": "mp4",
+      "value": "mp4",
+      "icon": "movie",
+      "group": "video",
+      "demos": []
+    },
+    {
+      "label": "mkv",
+      "value": "mkv",
+      "icon": "video--o",
+      "group": "video",
+      "demos": []
+    },
+    {
+      "label": "mpeg",
+      "value": "mpg,mpeg",
+      "icon": "mpeg",
+      "group": "video",
+      "demos": []
+    },
+    {
+      "label": "avi",
+      "value": "avi",
+      "icon": "video",
+      "group": "video",
+      "demos": []
+    }
+  ]
+}

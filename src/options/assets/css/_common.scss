@@ -1,0 +1,39 @@
+///
+/// Tab Downloader
+///
+
+html {
+	font-size: $font-size-root;
+}
+
+body {
+	-webkit-font-smoothing: antialiased;
+	background-color: $color-background;
+	color: $color-text;
+	font-family: $font-family-body;
+	line-height: 1;
+}
+
+/// Sticky footer
+.tdl {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+
+	&__wrapper {
+		flex: 1;
+	}
+}
+
+/// Horizontal wrapper
+.container {
+	clear: both;
+	margin: 0 auto;
+	padding: 0 baseline();
+}
+
+.hide,
+.sr-only,
+.offline [data-offline='false'] {
+	@extend %hide;
+}
